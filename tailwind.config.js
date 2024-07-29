@@ -5,7 +5,9 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      padding: {'scrollbar-padding': 'calc(100vw - 100%)'}
+    },
   },
   plugins: [],
 }

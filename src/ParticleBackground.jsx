@@ -18,14 +18,14 @@ const ParticleSimulation = () => {
         rMax: 0.3,
         sizeX: 0,
         sizeY: 0,
-        dt: 0.03,
-        particleVisSize: 10,
-        n: 450,
+        dt: 0.02,
+        particleVisSize: 3,
+        n: 600,
         m: 40,
         friction: 0.2,
         maxDistance: 1,
         minDistance: 0.3,
-        matrixShape: 4,
+        matrixShape: 3,
     });
 
     const initializeVariables = () => {
@@ -208,7 +208,7 @@ const ParticleSimulation = () => {
                 const screenX = particle.x * settings.current.sizeX;
                 const screenY = particle.y * settings.current.sizeX;
                 ctx.arc(screenX, screenY, settings.current.particleVisSize, 0, 2 * Math.PI);
-                // ctx.fillStyle = `hsl(${(particle.famIdx / settings.current.m) * 360}, 100%, 50%)`;
+                // ctx.fillStyle = `hsl(${(particle.famIdx / settings.current.m) * 360}, 80%, 70%)`;
                 ctx.fillStyle = `hsl(0, 0%, 100%)`;
                 ctx.fill();
             }
@@ -226,7 +226,7 @@ const ParticleSimulation = () => {
         };
     }, []);
 
-    return <canvas ref={canvasRef} id="particleCanvas" />;
+    return <canvas ref={canvasRef} id="particleCanvas" className="fixed top-0 left-0 w-full h-full"/>;
 };
 
 export default ParticleSimulation;
