@@ -19,13 +19,13 @@ const ParticleSimulation = () => {
         sizeX: 0,
         sizeY: 0,
         dt: 0.03,
-        particleVisSize: 5,
-        n: 850,
+        particleVisSize: 10,
+        n: 450,
         m: 40,
         friction: 0.2,
         maxDistance: 1,
-        minDistance: 0.15,
-        matrixShape: 6,
+        minDistance: 0.3,
+        matrixShape: 4,
     });
 
     const initializeVariables = () => {

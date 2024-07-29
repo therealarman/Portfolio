@@ -9,7 +9,7 @@ const App = () => {
     <div className="relative">
       <div className="h-screen flex bg-neutral-900 justify-center place-items-center">
         <ParticleBackground/>
-        {/* <h1 className="absolute text-9xl font-bold text-gray-100 mix-blend-exclusion">Arman</h1> */}
+        <h1 className="absolute text-9xl font-bold text-gray-100 mix-blend-exclusion">Arman Alexis</h1>
       </div>
     </div>
   )
