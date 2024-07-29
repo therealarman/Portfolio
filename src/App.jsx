@@ -1,13 +1,17 @@
 import { useLayoutEffect, useRef } from "react"
 import gsap from "gsap"
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ParticleBackground from './ParticleBackground';
 
 gsap.registerPlugin(ScrollToPlugin);
+gsap.registerPlugin(ScrollTrigger);
+
 
 const App = () => {
 
   const comp = useRef(null)
+  const particleBgRef = useRef(null);
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
@@ -28,6 +32,18 @@ const App = () => {
         .set("#hello6", {opacity: "1"})
         .set(document.body, {overflow: "auto"}, "+=0.3")
         .to("#hello-slider", {yPercent: -100, duration: 1}, "+=0.3")
+
+      gsap.set("#particleCanvas", { filter: "blur(0px)" });
+      gsap.to("#particleCanvas", {
+        filter: "blur(10px)",
+        scrollTrigger: {
+          trigger: particleBgRef.current,
+          start: "center",
+          end: "bottom",
+          scrub: true,
+          markers: false
+        }
+      });
 
     }, comp)
 
@@ -62,13 +78,13 @@ const App = () => {
           className="absolute text-5xl text-gray-100 opacity-0">مرحبا</h1>
       </div>
 
-       <div className="h-screen flex bg-gray-950 justify-center place-items-center">
+       <div ref={particleBgRef} className="h-screen flex bg-gray-950 justify-center place-items-center">
          <ParticleBackground/>
          <h1 className="text-9xl font-bold text-white mix-blend-exclusion">Arman Alexis</h1>
        </div>
 
-      <div className="h-screen flex bg-gray-800 justify-center place-items-center">
-      </div>
+      <div className="h-screen flex bg-gray-800 justify-center place-items-center"></div>
+      <div className="h-screen flex bg-gray-800 justify-center place-items-center"></div>
 
 
     </div>

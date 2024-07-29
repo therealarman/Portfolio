@@ -18,14 +18,14 @@ const ParticleSimulation = () => {
         rMax: 0.3,
         sizeX: 0,
         sizeY: 0,
-        dt: 0.02,
-        particleVisSize: 3,
-        n: 600,
-        m: 40,
+        dt: 0.01,
+        particleVisSize: 2,
+        n: 750,
+        m: 60,
         friction: 0.2,
         maxDistance: 1,
         minDistance: 0.3,
-        matrixShape: 3,
+        matrixShape: 1,
     });
 
     const initializeVariables = () => {
@@ -227,6 +227,11 @@ const ParticleSimulation = () => {
     }, []);
 
     return <canvas ref={canvasRef} id="particleCanvas" className="fixed top-0 left-0 w-full h-full"/>;
+    // return(
+    //     <div className="absolute p-1">
+    //         <canvas ref={canvasRef} id="particleCanvas" className="top-0 left-0 w-full h-full"/>
+    //     </div>
+    // );
 };
 
 export default ParticleSimulation;
