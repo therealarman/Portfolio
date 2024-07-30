@@ -15,17 +15,17 @@ const ParticleSimulation = () => {
     const particles = useRef([]);
     const forceMatrix = useRef([]);
     const settings = useRef({
-        rMax: 0.3,
+        rMax: 0.2,
         sizeX: 0,
         sizeY: 0,
-        dt: 0.01,
+        dt: 0.03,
         particleVisSize: 2,
-        n: 750,
-        m: 60,
+        n: 600,
+        m: 35,
         friction: 0.2,
         maxDistance: 1,
-        minDistance: 0.3,
-        matrixShape: 1,
+        minDistance: 0.2,
+        matrixShape: 6,
     });
 
     const initializeVariables = () => {
@@ -114,9 +114,12 @@ const ParticleSimulation = () => {
         const m = settings.current.m;
         const particleList = [];
 
+        const { rMax, dt, friction, sizeY, sizeX } = settings.current;
+        const ratio = sizeY / sizeX;
+
         for (let i = 0; i < amount; i++) {
             let xPos = Math.random();
-            let yPos = Math.random();
+            let yPos = Math.random() * ratio;
             let idx = Math.floor(Math.random() * m);
             let particle = new ParticleInfo(idx, xPos, yPos, 0, 0);
             particleList.push(particle);
@@ -208,8 +211,8 @@ const ParticleSimulation = () => {
                 const screenX = particle.x * settings.current.sizeX;
                 const screenY = particle.y * settings.current.sizeX;
                 ctx.arc(screenX, screenY, settings.current.particleVisSize, 0, 2 * Math.PI);
-                // ctx.fillStyle = `hsl(${(particle.famIdx / settings.current.m) * 360}, 80%, 70%)`;
-                ctx.fillStyle = `hsl(0, 0%, 100%)`;
+                ctx.fillStyle = `hsl(${(particle.famIdx / settings.current.m) * 360}, 80%, 70%)`;
+                // ctx.fillStyle = `hsl(0, 0%, 100%)`;
                 ctx.fill();
             }
 
@@ -226,12 +229,12 @@ const ParticleSimulation = () => {
         };
     }, []);
 
-    return <canvas ref={canvasRef} id="particleCanvas" className="fixed top-0 left-0 w-full h-full"/>;
-    // return(
-    //     <div className="absolute p-1">
-    //         <canvas ref={canvasRef} id="particleCanvas" className="top-0 left-0 w-full h-full"/>
-    //     </div>
-    // );
+    // return <canvas ref={canvasRef} id="particleCanvas" className="fixed top-0 left-0 w-full h-full"/>;
+    return(
+        <div className="absolute p-1">
+            <canvas ref={canvasRef} id="particleCanvas" className="top-0 left-0 w-full h-full"/>
+        </div>
+    );
 };
 
 export default ParticleSimulation;
